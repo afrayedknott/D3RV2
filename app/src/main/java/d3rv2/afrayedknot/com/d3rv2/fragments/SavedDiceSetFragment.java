@@ -18,6 +18,6 @@ public class SavedDiceSetFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.saveddicesets, container, false);
+        return inflater.inflate(R.layout.dicelists, container, false);
     }
 }

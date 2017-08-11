@@ -4,6 +4,8 @@ import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -19,8 +21,13 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import d3rv2.afrayedknot.com.d3rv2.Data;
 import d3rv2.afrayedknot.com.d3rv2.fragments.SavedDiceSetFragment;
 import d3rv2.afrayedknot.com.d3rv2.fragments.RecentDiceSetFragment;
+import d3rv2.afrayedknot.com.d3rv2.adapters.RecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +70,22 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        List<Data> diceData = new ArrayList<>();
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(diceData, getApplication());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        public List<Data> filledDiceData(){
+
+            List<Data> data = new ArrayList<>();
+
+            data.add(new Data);
+
+            return data;
+        }
 
     }
 
@@ -118,8 +141,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
             return rootView;
         }
     }
