@@ -1,12 +1,10 @@
 package d3rv2.afrayedknot.com.d3rv2.activities;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,15 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.List;
 
-import d3rv2.afrayedknot.com.d3rv2.Data;
 import d3rv2.afrayedknot.com.d3rv2.fragments.SavedDiceSetFragment;
 import d3rv2.afrayedknot.com.d3rv2.fragments.RecentDiceSetFragment;
-import d3rv2.afrayedknot.com.d3rv2.adapters.RecyclerViewAdapter;
+import d3rv2.afrayedknot.com.d3rv2.adapters.SavedDiceSetRecyclerViewAdapter;
+import d3rv2.afrayedknot.com.d3rv2.data.PossibleDiceTypes;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    ArrayList<String> mDiceSides = PossibleDiceTypes.getDiceSidesString();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,31 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        List<Data> diceData = new ArrayList<>();
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(diceData, getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        public List<Data> filledDiceData(){
-
-            List<Data> data = new ArrayList<>();
-
-            data.add(new Data);
-
-            return data;
-        }
 
     }
 
@@ -120,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
         }
@@ -131,9 +102,6 @@ public class MainActivity extends AppCompatActivity {
          */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
             return fragment;
         }
 
